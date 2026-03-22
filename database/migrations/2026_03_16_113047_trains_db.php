@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('azienda');
             $table->string('stazione_partenza');
             $table->string('stazione_arrivo');
-            //qui usero datatime per gestire data e ora insieme
-            $table->dataTime('orario_partenza');
-            $table->datatime('orario_arrivo');
-            //qui usero uniche come codicde unico per evitare duplicati
-            $table->string('codice_treno')->uniche();
+            //qui usero datetime per gestire data e ora insieme
+            $table->dateTime('orario_partenza');
+            $table->dateTime('orario_arrivo');
+            //qui usero uniqhe come codicde unico per evitare duplicati
+            $table->string('codice_treno')->unique();
             //interger -> numero intero
             $table->integer('totale_carrozze');
             //booleano valore vero o falso
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('trains');
     }
 };
