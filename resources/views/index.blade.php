@@ -22,41 +22,43 @@
     </div>
   </div>
 </div>
-<div class="contenitore">
+<div class="contenitore ">
   <div class="row">
     <div class="col">
-      <table class= "table-auto w-full text-center border-collapse border border-gray-400">
-    <tr>
-        <th>Azienda</th> 
-        <th>Partenza</th> 
-        <th>Arrivo</th>
-        <th>Orario di partenza</th>
-        <th>Orario di arrivo</th>
-        <th>codice treno</th>
-        <th>carrozze</th>
-   
-    </tr>
+      <table class= "table-auto w-full text-center">
+   <tr >
+    <th class="p-5">Azienda</th>
+    <th class="p-5">Partenza</th>
+    <th class="p-5">Arrivo</th>
+    <th class="p-5">Orario partenza</th>
+    <th class="p-5">orario arrivo</th>
+    <th class="p-5">codice treno</th>
+    <th class="p-5">carrozze</th>
+
+    <th class="p-5">Stato</th>
+
+</tr>
     @foreach ($trains as $train) 
     <tr>
-      <td>{{ $train->azienda }}</td> 
-      <td>{{ $train->stazione_partenza}}</td> 
-      <td>{{ $train->stazione_arrivo }}</td>
-      <td>{{ $train->orario_arrivo }}</td>
-      <td>{{ $train->orario_partenza }}</td>
-      <td>{{ $train->codice_treno }}</td>
-      <td>{{ $train->totale_carrozze }}</td>
-      </td>
-    </tr>    
-    @if ($train->cancellato ==1)
-    <tr>
-      <td colspan="7" class="text-center">CANCELLATO</td>
-     </tr>
-     @elseif ($train->in_orario ==1)
-      <tr>
-         <td colspan="7" class="text-center">IN ORARIO</td>
-      </tr>
-
-    @endif  
+      <td class="p-3" >{{ $train->azienda }}</td> 
+      <td class="p-3">{{ $train->stazione_partenza}}</td> 
+      <td class="p-3">{{ $train->stazione_arrivo }}</td>
+      <td class="p-3">{{ $train->orario_partenza }}</td>
+      <td class="p-3">{{ $train->orario_arrivo }}</td>
+      <td class="p-3">{{ $train->codice_treno }}</td>
+      <td class="p-3">{{ $train->totale_carrozze }}</td>
+      
+       
+    <td class="p-3">
+    @if ($train->cancellato) 
+         CANCELLATO
+    @elseif (!$train->in_orario)
+         RITARDO
+    @else
+         IN ORARIO
+    @endif
+</td>
+ </tr>    
      @endforeach
   </div>
    </table>
